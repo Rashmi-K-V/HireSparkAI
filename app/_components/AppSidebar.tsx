@@ -11,35 +11,30 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { Calendar, Home, Inbox, Layers, Search, Settings, UserCircle } from "lucide-react"
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const items = [
     {
-        title: "Home",
+        title: "Workspace",
         url: "#",
-        icon: Home,
+        icon: Layers,
     },
     {
-        title: "Inbox",
+        title: "AI Tools",
         url: "#",
         icon: Inbox,
     },
     {
-        title: "Calendar",
+        title: "My History",
         url: "#",
         icon: Calendar,
     },
     {
-        title: "Search",
+        title: "Profile",
         url: "#",
-        icon: Search,
-    },
-    {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
+        icon: UserCircle,
     },
 ]
 
@@ -47,18 +42,23 @@ export function AppSidebar() {
     const path = usePathname();
     return (
         <Sidebar>
-            <SidebarHeader>
-                <div className='p-4'>
-                    <Image src={'./logo.svg'} alt='logo' width={100} height={100}
-                        className='w-full h-full' />
-                    <h2 className='text-sm text-gray-400 text-center'>Build Awesome</h2>
-                </div>
-            </SidebarHeader>
-            <SidebarContent>
+                <SidebarHeader>
+        <div className='p-4 flex items-center gap-3'>
+            <Image src={'/logo.svg'} alt='logo' width={70} height={70} className='w-10 h-10' />
+            <div>
+                <h1 className='font-bold text-xl bg-gradient-to-r from-blue-500 to-purple-700 bg-clip-text text-transparent'>
+                    HireSpark-AI
+                </h1>
+               
+            </div>
+        </div>
+        {/* <h2 className='text-sm text-gray-400 ml-10'>Build Awesome skills</h2> */}
+    </SidebarHeader>
+    <SidebarContent>
                 <SidebarGroup>
 
                     <SidebarGroupContent>
-                        <SidebarMenu className='mt-5'>
+                        <SidebarMenu className='mt-2'>
                             {items.map((item, index) => (
                                 // <SidebarMenuItem key={item.title} className='p-2'>
                                 //     <SidebarMenuButton asChild className=''>
@@ -74,9 +74,7 @@ export function AppSidebar() {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter>
-                <h2 className='p-2 text-gray-400 text-sm'>Copyright @Tubeguruji</h2>
-            </SidebarFooter>
+            
         </Sidebar>
     )
 }

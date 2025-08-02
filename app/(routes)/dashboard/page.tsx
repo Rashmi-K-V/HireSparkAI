@@ -1,8 +1,13 @@
 import React from 'react'
+import WelcomeBanner from './_components/WelcomeBanner'
+import AITools from './_components/AITools'
 
 function Dashboard() {
     return (
-        <div>Dashboard</div>
+        <div>
+            <WelcomeBanner />
+            <AITools />
+        </div>
     )
 }
 
