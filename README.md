@@ -35,14 +35,14 @@ Generate customized, job-ready cover letters that align with your resume and job
 
 ## 🛠 Tech Stack
 
-| Technology      | Description                               |
-| --------------- | ----------------------------------------- |
-| ⚡ Next.js      | Full-stack React framework                |
-| ⚛️ React        | UI development and component architecture |
-| 🔐 Clerk        | Authentication & user management          |
-| 🌐 Neon         | Cloud-native PostgreSQL DB                |
-| 🌀 Inngest      | Background jobs & serverless workflows    |
-| 🎨 Tailwind CSS | Responsive, utility-first styling         |
+| Technology      | Description                                           |
+| --------------- | ----------------------------------------------------- |
+| ⚡ Next.js      | Full-stack React framework                            |
+| ⚛️ React        | UI development and component architecture             |
+| 🔐 Clerk        | Authentication & user management,Subscription Feature |
+| 🌐 Neon         | Cloud-native PostgreSQL DB                            |
+| 🌀 Inngest      | Background jobs & serverless workflows                |
+| 🎨 Tailwind CSS | Responsive, utility-first styling                     |
 
 ---
 

@@ -14,26 +14,32 @@ import {
 import { Calendar, Home, Inbox, Layers, Search, Settings, UserCircle } from "lucide-react"
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { PricingTable } from '@clerk/nextjs'
 
 const items = [
     {
         title: "Workspace",
-        url: "#",
+        url: "/myworkspace",
         icon: Layers,
     },
     {
         title: "AI Tools",
-        url: "#",
+        url: "/aitools",
         icon: Inbox,
     },
     {
-        title: "My History",
-        url: "#",
+        title: "Billing",
+        url: "/billing",
         icon: Calendar,
     },
     {
+        title: "My History",
+        url: "/history",
+        icon: Search,
+    },
+    {
         title: "Profile",
-        url: "#",
+        url: "/profile",
         icon: UserCircle,
     },
 ]
