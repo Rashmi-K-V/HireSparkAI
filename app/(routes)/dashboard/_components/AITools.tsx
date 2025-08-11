@@ -7,7 +7,7 @@ const aiToolsList = [
     name:'AI Career Guide',
     description: 'Chat with an AI Career Coach to get personalized advice',
     icon:'/chatbot.png',
-    button:'Lets Chat ',
+    button:'Ask Now ',
     path:'/ai-chat'
   },
   {
@@ -37,10 +37,10 @@ function AITools() {
   return (
     <div className='mt-7 p-5 bg-white rounded-lg shadow-md'>
       <h2 className='font-bold text-xl bg-gradient-to-tr from-orange-700 to-amber-800 bg-clip-text text-transparent'>Available AI Tools</h2>
-      <p>From Resume to Roadmap—AI That Guides Your Career.</p>
+      <p className='text-gray-700'>From Resume to Roadmap—AI That Guides Your Career.</p>
 
-      <div>
-        {aiToolsList.map((tool:any,index)=>(
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 p-5 mt-4  rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300'>
+        {aiToolsList.map((tool,index)=>(
           <AIToolCard tool={tool} key = {index}/>
         ))}
       </div>
