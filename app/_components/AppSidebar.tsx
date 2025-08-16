@@ -19,7 +19,7 @@ import { PricingTable } from '@clerk/nextjs'
 const items = [
     {
         title: "Workspace",
-        url: "/myworkspace",
+        url: "/dashboard",
         icon: Layers,
     },
     {
