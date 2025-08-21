@@ -1,6 +1,6 @@
-import { gemini } from "inngest";
+
 import { inngest } from "./client";
-import { createAgent, openai} from '@inngest/agent-kit';
+import { createAgent, gemini } from "@inngest/agent-kit";  // ✅ same source
 
 
 export const helloWorld = inngest.createFunction(
@@ -17,7 +17,7 @@ export const AICareerChatAgent = createAgent({
   name : "AICareerChatAgent",
   description: "An agent that helps users with career-related queries using AI.",
   system : "You are a helpful ,professional AI assistant .Your role is to guide users with questions related to career, job search advice,interview prepartaion ,career transitions,industry trends and professional development. Provide clear, concise, and actionable advice.If the user ask something that is not related to career, job search advice,interview prepartaion ,career transitions,industry trends and professional development, politely inform them that you can only assist with career-related queries.",
-  model: openai({
+  model : gemini({
     model:"gemini-2.0-flash",
     apiKey : process.env.GEMINI_API_KEY
   }),
