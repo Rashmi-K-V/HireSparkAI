@@ -44,7 +44,17 @@ function AIChat() {
 
   useEffect(() =>{
     // Save messsages in database
+    messageList.length > 0 && updateMessageList();
+
   },[messageList])
+
+  const updateMessageList = async () => {
+    const result = await axios.put('/api/history', {
+      content: messageList,
+      recordId: chatid
+    });
+    console.log(result);
+  }
 
   return (
     <div className='px-10 md:px-24 lg:px-36 xl:px-48 overflow-auto h-[75vh] '>
