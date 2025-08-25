@@ -13,7 +13,7 @@
     "@inngest/agent-kit": "^0.9.0",
     "@inngest/ai": "^0.1.5",
     "@neondatabase/serverless": "^0.10.4",
-    "@radix-ui/react-dialog": "^1.1.5",
+    "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-popover": "^1.1.5",
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",

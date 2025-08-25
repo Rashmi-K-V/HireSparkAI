@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import uuid4 from "uuid4";
+import ResumeUploadDialog from './ResumeUploadDialog';
 
 interface TOOL {
   name: string;
@@ -21,9 +22,15 @@ type AIToolCardProps = {
 
 function AIToolCard({ tool }: AIToolCardProps) {
   const router = useRouter();
+  const [openResumeUpload, setOpenResumeUpload] = React.useState(false);
 
   // user clicks on any AI tool button, it will generate a unique id for the session
+
   const onClickButton = async () => {
+    if(tool.name === "AI Resume Analyzer"){
+      setOpenResumeUpload(true);
+      return;
+    }
     const id = uuid4(); // ✅ generate here, only when clicked
 
     // create new session id for the user
@@ -54,6 +61,7 @@ function AIToolCard({ tool }: AIToolCardProps) {
       <Button onClick={onClickButton} className="w-full mt-3">
         {tool.button}
       </Button>
+      <ResumeUploadDialog openResumeUpload = {openResumeUpload} setOpenResumeUpload={setOpenResumeUpload}/>
     </div>
   );
 }
