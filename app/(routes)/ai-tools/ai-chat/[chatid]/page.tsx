@@ -83,7 +83,7 @@ function AIChat() {
       });
   
       console.log(result.data);
-      // router.push(`${tool.path}/${id}`); // navigate after saving
+      
       router.replace("/ai-tools/ai-chat/" + id)
     };
   
