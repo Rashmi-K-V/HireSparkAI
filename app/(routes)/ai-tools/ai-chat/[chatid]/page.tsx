@@ -21,6 +21,19 @@ function AIChat() {
   const {chatid} = useParams();
   console.log(chatid);
 
+  useEffect(()=>{
+    chatid && getMessageList();
+  },[chatid])
+
+  const getMessageList = async() =>{
+    const result = await axios.get('/api/history?recordId='+chatid);
+    //* */
+    if (result.data?.content) {
+    setMessageList(result.data.content);  // ✅ set messages
+  }
+    console.log(result.data);
+  }
+
   const onSend = async() =>{
     setLoading(true);
     setMessageList(prev => [...prev,{
@@ -45,7 +58,6 @@ function AIChat() {
   useEffect(() =>{
     // Save messsages in database
     messageList.length > 0 && updateMessageList();
-
   },[messageList])
 
   const updateMessageList = async () => {
@@ -73,8 +85,8 @@ function AIChat() {
         <div className="flex-1">
           {/* message list */}
           {messageList?.map((message, index) => (
-            <div>
-            <div key = {index} className={`flex mb-2 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div key = {index}>
+            <div className={`flex mb-2 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`p-3 rounded-lg gap-2 ${message.role === 'user' ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'} my-4`}>
                   <ReactMarkdown>
                     {message.content}
@@ -82,7 +94,7 @@ function AIChat() {
                   
                 </div>
               </div>
-                {loading && messageList?.length -1 === index && <div className='flex justify-start p-3 rou
+                {loading && messageList?.length -1 == index && <div className='flex justify-start p-3 rou
                 nded-lg gap-2 bg-slate-200 text-gray-800 mb-2'>
                    <LoaderCircle className='animate-spin '/>thinking...
                   </div>
