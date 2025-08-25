@@ -8,6 +8,8 @@ import ReactMarkdown from 'react-markdown'
 import EmptyState from '../_components/EmptyState'
 import axios from 'axios'
 import { useParams } from 'next/navigation'
+import uuid4 from 'uuid4'
+import { useRouter } from 'next/navigation';
 type messages = {
   content:string,
   role:string,
@@ -17,8 +19,9 @@ type messages = {
 function AIChat() {
   const [userInput, setUserInput] = useState<string>('');
   const [loading, setLoading] = useState(false);
-  const [messageList, setMessageList] = useState<messages[]>([]);
-  const {chatid} = useParams();
+  const [messageList, setMessageList] = useState<any[]>([]); 
+  const router = useRouter();
+  const {chatid}:any = useParams();
   console.log(chatid);
 
   useEffect(()=>{
@@ -27,11 +30,11 @@ function AIChat() {
 
   const getMessageList = async() =>{
     const result = await axios.get('/api/history?recordId='+chatid);
-    //* */
-    if (result.data?.content) {
-    setMessageList(result.data.content);  // ✅ set messages
-  }
     console.log(result.data);
+
+    setMessageList(result?.data?.content);  // ✅ set messages
+    // setMessageList(result?.data?.content ? []);
+    
   }
 
   const onSend = async() =>{
@@ -55,10 +58,12 @@ function AIChat() {
   }
   console.log(messageList);
 
-  useEffect(() =>{
-    // Save messsages in database
-    messageList.length > 0 && updateMessageList();
-  },[messageList])
+  useEffect(() => {
+    
+      messageList.length > 0 && updateMessageList();
+    
+  }, [messageList]);
+
 
   const updateMessageList = async () => {
     const result = await axios.put('/api/history', {
@@ -68,6 +73,21 @@ function AIChat() {
     console.log(result);
   }
 
+  const onNewChat = async () => {
+      const id = uuid4(); // ✅ generate here, only when clicked
+  
+      // create new session id for the user
+      const result = await axios.post('/api/history', {
+        recordId: id,
+        content: [],
+      });
+  
+      console.log(result.data);
+      // router.push(`${tool.path}/${id}`); // navigate after saving
+      router.replace("/ai-tools/ai-chat/" + id)
+    };
+  
+
   return (
     <div className='px-10 md:px-24 lg:px-36 xl:px-48 overflow-auto h-[75vh] '>
       <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-md gap-3">
@@ -75,7 +95,7 @@ function AIChat() {
           <h2 className='font-bold text-2xl'>AI-Powered Career Guidance</h2>
           <p>Navigate Your Future with AI Precision</p>
         </div>
-        <Button className='bg-cyan-800 font-bold'>New Chat</Button>
+        <Button onClick={onNewChat} className='bg-cyan-800 font-bold'>New Chat</Button>
       </div>
       <div className="flex flex-col h-[70vh]">
         {messageList?.length<=0 && <div className="mt-5">
